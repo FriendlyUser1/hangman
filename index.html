@@ -10,33 +10,42 @@
 		<script src="js/bootstrap.js"></script>
 		<script src="js/jquery-3.0.0.js"></script>
 		<script src="js/app.js"></script>
+		<link rel="icon" href="./favicon.png" />
 	</head>
 	<body onload="generateGame()">
-		<div id="gallows">
-			<canvas id="stickcanvas"></canvas>
+		<br />
+
+		<div id="gallows" class="container text-center">
+			<canvas id="stickcanvas" width="180" height="230"></canvas>
 		</div>
+
+		<br />
+
 		<div id="wordarea">
 			<p id="word"></p>
+			<p class="smaller" id="guesses">Guesses: 0</p>
 		</div>
-		<div class="container justify-content-center align-content-center">
-			<div class="row-cols-auto buttons"></div>
+
+		<div class="container text-center">
+			<div class="row-cols-auto buttons btn-group flex-wrap"></div>
 		</div>
+
 		<br />
-		<div
-			class="functionbtn container justify-content-center align-content-center"
-		>
-			<div class="row">
+
+		<div class="container text-center">
+			<div class="row-cols-1">
 				<button class="btn btn-primary" onclick="generateGame()">
 					New Word
 				</button>
 			</div>
 		</div>
 	</body>
+
 	<script>
 		var alphabet = "abcdefghijklmnopqrstuvwxyz";
 		for (var i = 0; i < alphabet.length; ++i) {
 			$(".buttons").append(
-				`<button id=${alphabet[i]} onclick="buttonPressed('${alphabet[i]}')">${alphabet[i]}</button>`
+				`<button id=${alphabet[i]} onclick="buttonPressed('${alphabet[i]}')" class="btn btn-dark">${alphabet[i]}</button>`
 			);
 		}
 	</script>
