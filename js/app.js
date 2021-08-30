@@ -6,13 +6,14 @@ var goodGuesses = 0;
 var endOfGame = false;
 
 function generateGame() {
-	document.getElementById("word").style.fontSize = "70px";
+	document.getElementById("word").style.fontSize = "50px";
 	guessedLetters = [];
 	currentPart = 0;
 	badGuesses = 0;
 	goodGuesses = 0;
 	endOfGame = false;
 	document.getElementById("guesses").innerHTML = ``;
+	clearCanvas();
 
 	var url = `https://random-word-api.herokuapp.com/word?number=1&swear=0`;
 	fetch(url)
@@ -21,6 +22,10 @@ function generateGame() {
 		})
 		.then(function (data) {
 			data = data.toString();
+			if (data.split("").length > 11) {
+				generateGame();
+			}
+
 			document.getElementById("word").innerHTML = data.replace(/./g, "_ ");
 			sharedData = btoa(data);
 		})
@@ -28,8 +33,6 @@ function generateGame() {
 			console.log(err);
 			generateGame();
 		});
-
-	clearCanvas();
 }
 
 function buttonPressed(letter) {
@@ -180,7 +183,7 @@ function endGame() {
 			"You ran out of guesses! Game over - Press New Word to play again";
 		return;
 	}
-	output.innerHTML = `Well done! The word was: ${atob(
+	output.innerHTML = `Well done! The word was ${atob(
 		sharedData
 	)}. Press New Word to play again`;
 }
