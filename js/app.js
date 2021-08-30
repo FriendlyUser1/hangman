@@ -36,6 +36,15 @@ function generateGame() {
 }
 
 function buttonPressed(letter) {
+	if (letter == "reset") {
+		var alphabet = "abcdefghijklmnopqrstuvwxyz";
+		for (var i = 0; i < alphabet.length; ++i) {
+			document.getElementById(alphabet[i]).style.backgroundColor = "#212529";
+			document.getElementById(alphabet[i]).style.color = "white";
+			document.getElementById(alphabet[i]).style.fontWeight = "normal";
+		}
+		return;
+	}
 	if (endOfGame) return;
 	if (guessedLetters.includes(letter)) return;
 	var replaceword = [];
@@ -59,8 +68,12 @@ function buttonPressed(letter) {
 	if (isFalse) {
 		nextPart();
 		badGuesses++;
+		document.getElementById(letter).style.backgroundColor = "rgb(255,70,10)";
 	} else {
 		goodGuesses++;
+		document.getElementById(letter).style.backgroundColor = "rgb(2,190,25)";
+		document.getElementById(letter).style.color = "black";
+		document.getElementById(letter).style.fontWeight = "bold";
 	}
 
 	word = document.getElementById("word");
@@ -179,8 +192,9 @@ function endGame() {
 	var output = document.getElementById("word");
 	document.getElementById("word").style.fontSize = "25px";
 	if (currentPart >= 8) {
-		output.innerHTML =
-			"You ran out of guesses! Game over - Press New Word to play again";
+		output.innerHTML = `You ran out of guesses! Game over - The word was ${atob(
+			sharedData
+		)}. Press New Word to play again`;
 		return;
 	}
 	output.innerHTML = `Well done! The word was ${atob(
