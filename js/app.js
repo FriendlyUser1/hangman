@@ -6,7 +6,6 @@ var goodGuesses = 0;
 var endOfGame = false;
 
 function generateGame() {
-	document.getElementById("word").style.fontSize = "50px";
 	guessedLetters = [];
 	currentPart = 0;
 	badGuesses = 0;
@@ -27,6 +26,7 @@ function generateGame() {
 			}
 
 			document.getElementById("word").innerHTML = data.replace(/./g, "_ ");
+			document.getElementById("word").style.fontSize = "50px";
 			sharedData = btoa(data);
 		})
 		.catch(function (err) {
