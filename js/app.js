@@ -54,12 +54,12 @@ function buttonPressed(letter) {
 	replaceword = openSplitData.join(" ");
 	for (var i = 0; i < openSplitData.length; i++) {
 		if (openSplitData[i] != letter) {
-			if (guessedLetters.includes(openSplitData[i]) == false) {
+			if (!guessedLetters.includes(openSplitData[i])) {
 				replaceword = replaceword.replace(openSplitData[i], "_ ");
 			}
 		}
 	}
-	if (openSplitData.includes(letter) == false) {
+	if (!openSplitData.includes(letter)) {
 		isFalse = true;
 	}
 
