@@ -191,7 +191,7 @@ function endGame() {
 	endOfGame = true;
 	var output = document.getElementById("word");
 	document.getElementById("word").style.fontSize = "25px";
-	if (currentPart >= 8) {
+	if (currentPart > 8) {
 		output.innerHTML = `You ran out of guesses! Game over - The word was ${atob(
 			sharedData
 		)}. Press New Word to play again`;
