@@ -14,16 +14,13 @@ function generateGame() {
 	document.getElementById("guesses").innerHTML = ``;
 	clearCanvas();
 
-	var url = `https://random-word-api.herokuapp.com/word?number=1&swear=0`;
+	var url = `https://random-word-api.herokuapp.com/word?number=1&length=${Math.floor(Math.random() * (12 - 5) + 5)}`;
 	fetch(url)
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
 			data = data.toString();
-			if (data.split("").length > 11) {
-				generateGame();
-			}
 
 			document.getElementById("word").innerHTML = data.replace(/./g, "_ ");
 			document.getElementById("word").style.fontSize = "50px";
@@ -81,9 +78,8 @@ function buttonPressed(letter) {
 		endGame();
 	}
 	guessedLetters.push(letter);
-	document.getElementById("guesses").innerHTML = `Guesses: ${
-		goodGuesses + badGuesses
-	} (Correct: ${goodGuesses}, Incorrect: ${badGuesses})`;
+	document.getElementById("guesses").innerHTML = `Guesses: ${goodGuesses + badGuesses
+		} (Correct: ${goodGuesses}, Incorrect: ${badGuesses})`;
 }
 
 function clearCanvas() {
